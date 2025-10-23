@@ -6,10 +6,14 @@ import {
   Mail,
   ExternalLink,
   ChevronDown,
+  Code,
+  Palette,
+  Figma,
 } from "lucide-react";
 
 const Portfolio = () => {
   const [visibleCards, setVisibleCards] = useState(new Set());
+  const [activeCategory, setActiveCategory] = useState("all");
   const projectRefs = useRef([]);
 
   const projects = [
@@ -18,7 +22,8 @@ const Portfolio = () => {
       title: "Real Property Tax Information System (Client Side)",
       description:
         "Calculate your taxes and view your property information - no account required.",
-      stack: ["React", "Materual UI", "EmailJS"],
+      stack: ["React", "Material UI", "EmailJS"],
+      category: "development",
       videoUrl: "/videos/rpt-client.mp4",
       demoLink: "https://realpropertytax.sanpablocity.gov.ph",
       githubLink: "",
@@ -27,8 +32,9 @@ const Portfolio = () => {
       id: 2,
       title: "Real Property Tax Management System (Employees)",
       description:
-        "Modern, role-based, with automated computations and simplified FAAS forms.  ",
+        "Modern, role-based, with automated computations and simplified FAAS forms.",
       stack: ["React", "PostgreSQL", "Node.js", "Express"],
+      category: "development",
       videoUrl: "/videos/rpt-employee.mp4",
       demoLink: "",
       githubLink: "",
@@ -39,80 +45,77 @@ const Portfolio = () => {
       description:
         "Full-stack MERN system for managing tricycle permits and violations with real-time tracking",
       stack: ["React", "Node.js", "MongoDB", "Express"],
+      category: "development",
       videoUrl: "/videos/tric.mp4",
       demoLink: "",
       githubLink: "",
     },
-
     {
       id: 4,
       title: "PPPLearning - E-Learning Platform for SLD",
       description:
         "Web + mobile system combining classroom management and game-based learning for children with SLD",
       stack: ["React", "Node.js", "MongoDB", "Mobile"],
+      category: "development",
       videoUrl:
         "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
       demoLink: "https://youtube.com",
       githubLink: "https://github.com/jimuelbaraero",
     },
-
+    // Design Projects
     {
-      id: 5,
-      title: "Tricycle Franchising & Violation Management System",
+      id: 10,
+      title: "Soundbar Switcher App UI",
       description:
-        "Full-stack MERN system for managing tricycle permits and violations with real-time tracking",
-      stack: ["React", "Node.js", "MongoDB", "Express"],
-      videoUrl:
-        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-      demoLink: "https://github.com/jimuelbaraero",
-      githubLink: "https://github.com/jimuelbaraero",
+        "Control and switch between multiple soundbars seamlessly from one app",
+      stack: ["Figma", "UI Design", "Prototyping"],
+      category: "design",
+      imageUrl: "/images/s.png",
+      figmaLink:
+        "https://www.figma.com/design/JjN9i7mUcMVioy4dxLk1bV/Soundbar-Bluetooth-Switcher-App?node-id=562-4152&t=6uBdFCD8aPpbVScy-1",
+      behanceLink: "",
     },
     {
-      id: 6,
-      title: "Real Property Tax Information System (Client Side)",
+      id: 11,
+      title: "Banking App Dashboard",
       description:
-        "React-based tax system for citizens with automated computation and payment tracking",
-      stack: ["React", "Tailwind CSS", "REST API"],
-      videoUrl:
-        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-      demoLink: "https://youtube.com",
-      githubLink: "https://github.com/jimuelbaraero",
+        "Clean and secure interface for personal finance management with data visualization",
+      stack: ["Figma", "UX Research", "Wireframing"],
+      category: "design",
+      imageUrl:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      figmaLink: "",
+      behanceLink: "",
     },
     {
-      id: 7,
-      title: "PPPLearning - E-Learning Platform for SLD",
+      id: 12,
+      title: "Health & Fitness App UI",
       description:
-        "Web + mobile system combining classroom management and game-based learning for children with SLD",
-      stack: ["React", "Node.js", "MongoDB", "Mobile"],
-      videoUrl:
-        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-      demoLink: "https://youtube.com",
-      githubLink: "https://github.com/jimuelbaraero",
-    },
-
-    {
-      id: 8,
-      title: "Tricycle Franchising & Violation Management System",
-      description:
-        "Full-stack MERN system for managing tricycle permits and violations with real-time tracking",
-      stack: ["React", "Node.js", "MongoDB", "Express"],
-      videoUrl:
-        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-      demoLink: "https://github.com/jimuelbaraero",
-      githubLink: "https://github.com/jimuelbaraero",
+        "Motivating workout tracker with gamification elements and social features",
+      stack: ["Figma", "Mobile Design", "Animation"],
+      category: "design",
+      imageUrl:
+        "https://images.unsplash.com/photo-1476357471311-43c0db9fb2b4?w=800&h=600&fit=crop",
+      figmaLink: "https://figma.com/@jimuelbaraero",
+      behanceLink: "",
     },
     {
-      id: 9,
-      title: "Real Property Tax Information System (Client Side)",
+      id: 13,
+      title: "SaaS Platform Design System",
       description:
-        "React-based tax system for citizens with automated computation and payment tracking",
-      stack: ["React", "Tailwind CSS", "REST API"],
-      videoUrl:
-        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-      demoLink: "https://youtube.com",
-      githubLink: "https://github.com/jimuelbaraero",
+        "Comprehensive component library and design tokens for enterprise software",
+      stack: ["Figma", "Design System", "Documentation"],
+      category: "design",
+      imageUrl:
+        "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&h=600&fit=crop",
+      figmaLink: "",
+      behanceLink: "",
     },
   ];
+
+  const filteredProjects = projects.filter(
+    (project) => activeCategory === "all" || project.category === activeCategory
+  );
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -132,7 +135,7 @@ const Portfolio = () => {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [activeCategory]);
 
   const scrollToProjects = () => {
     document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
@@ -199,7 +202,8 @@ const Portfolio = () => {
           transform: translateY(-8px) scale(1.02);
         }
 
-        video {
+        video,
+        img {
           object-fit: cover;
         }
 
@@ -208,11 +212,35 @@ const Portfolio = () => {
           background: rgba(255, 255, 255, 0.1);
           border: 1px solid rgba(255, 255, 255, 0.2);
         }
+
+        .category-btn {
+          position: relative;
+          overflow: hidden;
+        }
+
+        .category-btn::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.1),
+            transparent
+          );
+          transition: left 0.5s;
+        }
+
+        .category-btn:hover::before {
+          left: 100%;
+        }
       `}</style>
 
       {/* Header Section */}
       <header className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        {/* Animated Background Blobs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute w-96 h-96 bg-blue-500/10 rounded-full blur-3xl top-20 left-20 animate-float"></div>
           <div
@@ -230,8 +258,12 @@ const Portfolio = () => {
             JIMUEL BARAERO
           </h1>
 
-          <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 font-light mb-8">
-            Full-Stack Web Developer | React, Node.js, MongoDB, Express
+          <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 font-light mb-4">
+            Full-Stack Developer & UI/UX Designer
+          </p>
+
+          <p className="text-base sm:text-lg text-gray-400 font-light">
+            React, Node.js, MongoDB, Express • Figma
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 pt-4">
@@ -269,7 +301,7 @@ const Portfolio = () => {
             className="mt-12 inline-flex items-center gap-2 text-gray-400 hover:text-white transition-all duration-300 animate-float"
             aria-label="Scroll to projects"
           >
-            <span className="text-sm">View Projects</span>
+            <span className="text-sm">View Work</span>
             <ChevronDown size={20} />
           </button>
         </div>
@@ -278,17 +310,54 @@ const Portfolio = () => {
       {/* Projects Section */}
       <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16 animate-fade-in">
+          <div className="text-center mb-12 animate-fade-in">
             <h2 className="text-4xl sm:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
-              Featured Projects
+              Featured Work
             </h2>
             <p className="text-gray-400 text-lg">
-              Showcasing full-stack solutions with modern technologies
+              Development & Design Solutions
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 lg:gap-8">
-            {projects.map((project, index) => (
+          {/* Category Filter */}
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            <button
+              onClick={() => setActiveCategory("all")}
+              className={`category-btn flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                activeCategory === "all"
+                  ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/30"
+                  : "bg-slate-800/50 text-gray-300 hover:bg-slate-700/50 border border-slate-700"
+              }`}
+            >
+              All Work
+            </button>
+            <button
+              onClick={() => setActiveCategory("development")}
+              className={`category-btn flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                activeCategory === "development"
+                  ? "bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-lg shadow-blue-500/30"
+                  : "bg-slate-800/50 text-gray-300 hover:bg-slate-700/50 border border-slate-700"
+              }`}
+            >
+              <Code size={18} />
+              Development
+            </button>
+            <button
+              onClick={() => setActiveCategory("design")}
+              className={`category-btn flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                activeCategory === "design"
+                  ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/30"
+                  : "bg-slate-800/50 text-gray-300 hover:bg-slate-700/50 border border-slate-700"
+              }`}
+            >
+              <Palette size={18} />
+              UI/UX Design
+            </button>
+          </div>
+
+          {/* Projects Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {filteredProjects.map((project, index) => (
               <div
                 key={project.id}
                 ref={(el) => (projectRefs.current[index] = el)}
@@ -300,17 +369,38 @@ const Portfolio = () => {
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                {/* Video Preview */}
+                {/* Media Preview */}
                 <div className="relative h-48 sm:h-56 overflow-hidden bg-slate-900">
-                  <video
-                    src={project.videoUrl}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
+                  {project.category === "development" ? (
+                    <video
+                      src={project.videoUrl}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                  ) : (
+                    <img
+                      src={project.imageUrl}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent opacity-60"></div>
+
+                  {/* Category Badge */}
+                  <div className="absolute top-4 right-4">
+                    <span
+                      className={`px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm ${
+                        project.category === "development"
+                          ? "bg-blue-500/80 text-white"
+                          : "bg-purple-500/80 text-white"
+                      }`}
+                    >
+                      {project.category === "development" ? "Dev" : "Design"}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Content */}
@@ -336,45 +426,81 @@ const Portfolio = () => {
                   </div>
 
                   {/* Action Buttons */}
-                  {/* Action Buttons */}
                   <div className="flex gap-3 pt-2">
-                    {project.demoLink ? (
-                      <a
-                        href={project.demoLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium"
-                      >
-                        <ExternalLink size={16} />
-                        View Demo
-                      </a>
+                    {project.category === "development" ? (
+                      <>
+                        {project.demoLink ? (
+                          <a
+                            href={project.demoLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium"
+                          >
+                            <ExternalLink size={16} />
+                            View Demo
+                          </a>
+                        ) : (
+                          <button
+                            disabled
+                            className="flex-1 flex items-center justify-center gap-2 bg-slate-700/50 text-gray-500 px-4 py-2 rounded-lg cursor-not-allowed text-sm font-medium"
+                          >
+                            <ExternalLink size={16} />
+                            Private
+                          </button>
+                        )}
+                        {project.githubLink ? (
+                          <a
+                            href={project.githubLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg transition-all duration-300"
+                            aria-label="GitHub repository"
+                          >
+                            <Github size={16} />
+                          </a>
+                        ) : (
+                          <button
+                            disabled
+                            className="flex items-center justify-center gap-2 bg-slate-700/50 text-gray-500 px-4 py-2 rounded-lg cursor-not-allowed"
+                            aria-label="GitHub repository unavailable"
+                          >
+                            <Github size={16} />
+                          </button>
+                        )}
+                      </>
                     ) : (
-                      <button
-                        disabled
-                        className="flex-1 flex items-center justify-center gap-2 bg-slate-700/50 text-gray-500 px-4 py-2 rounded-lg cursor-not-allowed text-sm font-medium"
-                      >
-                        <ExternalLink size={16} />
-                        Private
-                      </button>
-                    )}
-                    {project.githubLink ? (
-                      <a
-                        href={project.githubLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg transition-all duration-300"
-                        aria-label="GitHub repository"
-                      >
-                        <Github size={16} />
-                      </a>
-                    ) : (
-                      <button
-                        disabled
-                        className="flex items-center justify-center gap-2 bg-slate-700/50 text-gray-500 px-4 py-2 rounded-lg cursor-not-allowed"
-                        aria-label="GitHub repository unavailable"
-                      >
-                        <Github size={16} />
-                      </button>
+                      <>
+                        {project.figmaLink ? (
+                          <a
+                            href={project.figmaLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium"
+                          >
+                            <Figma size={16} />
+                            View in Figma
+                          </a>
+                        ) : (
+                          <button
+                            disabled
+                            className="flex-1 flex items-center justify-center gap-2 bg-slate-700/50 text-gray-500 px-4 py-2 rounded-lg cursor-not-allowed text-sm font-medium"
+                          >
+                            <Figma size={16} />
+                            Private
+                          </button>
+                        )}
+                        {project.behanceLink && (
+                          <a
+                            href={project.behanceLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg transition-all duration-300"
+                            aria-label="Behance project"
+                          >
+                            <ExternalLink size={16} />
+                          </a>
+                        )}
+                      </>
                     )}
                   </div>
                 </div>

@@ -14,7 +14,7 @@ import {
 const Portfolio = () => {
   const [visibleCards, setVisibleCards] = useState(new Set());
   const [activeCategory, setActiveCategory] = useState("all");
-  const projectRefs = useRef([]);
+  const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const projects = [
     {
@@ -121,7 +121,8 @@ const Portfolio = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const id = parseInt(entry.target.dataset.id);
+          const element = entry.target as HTMLElement; // 👈 cast to HTMLElement
+          const id = parseInt(element.dataset.id || "0"); // safely access dataset
           if (entry.isIntersecting) {
             setVisibleCards((prev) => new Set([...prev, id]));
           }
@@ -360,7 +361,9 @@ const Portfolio = () => {
             {filteredProjects.map((project, index) => (
               <div
                 key={project.id}
-                ref={(el) => (projectRefs.current[index] = el)}
+                ref={(el) => {
+                  projectRefs.current[index] = el;
+                }}
                 data-id={project.id}
                 className={`card-hover group relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-2xl overflow-hidden border border-slate-700/50 backdrop-blur-sm transition-all duration-500 ${
                   visibleCards.has(project.id)

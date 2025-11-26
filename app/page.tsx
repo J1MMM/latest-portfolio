@@ -27,6 +27,7 @@ const Portfolio = () => {
       videoUrl: "/videos/rpt-client.mp4",
       demoLink: "https://realpropertytax.sanpablocity.gov.ph",
       githubLink: "",
+      previewType: "video",
     },
     {
       id: 2,
@@ -38,6 +39,7 @@ const Portfolio = () => {
       videoUrl: "/videos/rpt-employee.mp4",
       demoLink: "",
       githubLink: "",
+      previewType: "video",
     },
     {
       id: 3,
@@ -49,23 +51,110 @@ const Portfolio = () => {
       videoUrl: "/videos/tric.mp4",
       demoLink: "",
       githubLink: "",
+      previewType: "video",
     },
     {
       id: 4,
-      title: "PPPLearning - E-Learning Platform for SLD",
+      title: "Bluetooth Soundbar Switcher App",
       description:
-        "Web + mobile system combining classroom management and game-based learning for children with SLD",
-      stack: ["React", "Node.js", "MongoDB", "Mobile"],
+        "Control and switch between multiple soundbars seamlessly from one app",
+      stack: ["Flutter", "Kiosk Mode", "Android"],
       category: "development",
-      videoUrl:
-        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-      demoLink: "https://youtube.com",
-      githubLink: "https://github.com/jimuelbaraero",
+      imageUrl: "/images/s.png",
+      behanceLink: "",
+      previewType: "image",
     },
-    // Design Projects
+    {
+      id: 7,
+      title: "3D Ball Adventure",
+      description: "A 3D ball rolling game built on PlayCanvas",
+      stack: ["PlayCanvas"],
+      category: "development",
+      imageUrl: "/images/_3dball.png",
+      liveLink: "",
+      demoLink: "https://playcanv.as/b/15d24659",
+      figmaLink: "",
+      behanceLink: "",
+    },
+    {
+      id: 5,
+      title: "PPPEdu - A web platform for managing lessons and students",
+      description:
+        "A web-based learning platform for managing lessons and students",
+      stack: ["React", "Material UI", "Express", "MongoDB", "Firebase Storage"],
+      category: "development",
+      imageUrl: "/images/pppedu.png",
+      liveLink: "https://ppp-learning-tool.vercel.app/",
+      githubLink: "https://github.com/J1MMM/ppp-learning-tool",
+    },
+    {
+      id: 6,
+      title: "PPPKids - An interactive mobile learning app for kids",
+      description: "A mobile learning app for kids with interactive lessons",
+      stack: ["React Native", "Expo", "Express", "MongoDB"],
+      category: "development",
+      imageUrl: "/images/pppkids.png",
+      liveLink:
+        "https://www.mediafire.com/file/y45umlcnui5uxsa/PPPKids.apk/file",
+      Link: "https://github.com/J1MMM/pppkids",
+      demoLink:
+        "https://www.mediafire.com/file/y45umlcnui5uxsa/PPPKids.apk/file",
+      githubLink: "https://github.com/J1MMM/pppkids",
+      behanceLink: "",
+    },
+
+    {
+      id: 8,
+      title: "A Maze",
+      description: "Navigate a challenging 3D maze using PlayCanvas",
+      stack: ["PlayCanvas"],
+      category: "development",
+      imageUrl: "/images/maze.png",
+      demoLink: "https://launch.playcanvas.com/1861042?debug=true",
+      sourceLink: "https://playcanvas.com/project/1141013/overview/a-maze",
+      figmaLink: "",
+      behanceLink: "",
+    },
+    {
+      id: 9,
+      title: "Quizzical",
+      description: "A trivia quiz game using Open Trivia API",
+      stack: ["React JS", "Open Trivia API"],
+      category: "development",
+      imageUrl: "/images/quizzical.png",
+      demoLink: "https://j1mmm.github.io/Quizzical",
+      githubLink: "https://github.com/J1MMM/Quizzical.git",
+      behanceLink: "https://j1mmm.github.io/Quizzical",
+    },
     {
       id: 10,
-      title: "Soundbar Switcher App UI",
+      title: "YT2MP3",
+      description: "Convert YouTube videos to MP3 using a web interface",
+      stack: ["React JS", "Youtube API"],
+      category: "development",
+      imageUrl: "/images/yt2mp3.png",
+      demoLink: "https://j1mmm.github.io/yt2mp3",
+      githubLink: "https://github.com/J1MMM/yt2mp3.git",
+      figmaLink: "",
+      behanceLink: "",
+    },
+    {
+      id: 11,
+      title: "Tenzies game",
+      description: "A simple dice game built with React JS",
+      stack: ["React JS"],
+      category: "development",
+      imageUrl: "/images/tenzies.png",
+      demoLink: "https://j1mmm.github.io/Tenzies-game",
+      githubLink: "https://github.com/J1MMM/Tenzies-game.git",
+      figmaLink: "",
+      behanceLink: "",
+    },
+
+    // Design Projects
+    {
+      id: 12,
+      title: "Bluetooth Soundbar Switcher App UI",
       description:
         "Control and switch between multiple soundbars seamlessly from one app",
       stack: ["Figma", "UI Design", "Prototyping"],
@@ -76,7 +165,19 @@ const Portfolio = () => {
       behanceLink: "",
     },
     {
-      id: 11,
+      id: 13,
+      title: "Jopay - E-commerce Website UI",
+      description:
+        "An online food ordering platform with Google Sign-In and payment integration",
+      stack: ["Figma", "UI Design", "Prototyping"],
+      category: "design",
+      imageUrl: "/images/jopay.png",
+      figmaLink:
+        "https://www.figma.com/design/sU3fk9QkuGUtkBv2ir54Sr/Jopay-s-Kitchen-Wireframae-HIGH-FIDELITY-?node-id=0-1&p=f&t=W4PhbjTMvksw80kx-0z",
+      behanceLink: "",
+    },
+    {
+      id: 14,
       title: "Banking App Dashboard",
       description:
         "Clean and secure interface for personal finance management with data visualization",
@@ -88,7 +189,7 @@ const Portfolio = () => {
       behanceLink: "",
     },
     {
-      id: 12,
+      id: 15,
       title: "Health & Fitness App UI",
       description:
         "Motivating workout tracker with gamification elements and social features",
@@ -100,7 +201,7 @@ const Portfolio = () => {
       behanceLink: "",
     },
     {
-      id: 13,
+      id: 16,
       title: "SaaS Platform Design System",
       description:
         "Comprehensive component library and design tokens for enterprise software",
@@ -374,7 +475,7 @@ const Portfolio = () => {
               >
                 {/* Media Preview */}
                 <div className="relative h-48 sm:h-56 overflow-hidden bg-slate-900">
-                  {project.category === "development" ? (
+                  {project.previewType === "video" ? (
                     <video
                       src={project.videoUrl}
                       autoPlay
